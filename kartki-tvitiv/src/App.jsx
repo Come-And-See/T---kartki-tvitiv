@@ -10,18 +10,15 @@ function App() {
 
   return (
     <>
-
       <nav>
         <NavLinks />
       </nav>
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/tweets' element={<Tweets/>} />
+        <Route path='/tweets' element={<Tweets />} />
         <Route path="*" element={<Navigate to="/" replace={true} />} />
       </Routes>
-
-
     </>
   )
 }
