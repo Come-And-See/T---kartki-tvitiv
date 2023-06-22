@@ -18,7 +18,7 @@ const Dropdown = ({ handleFollow, handleAll, handleFollowing }) => {
             </css.DropdownButton>
             <css.DropdownBlock open={isOpen}>
                 <css.DropdownOption onClick={() => { handleOptionClick('show all'), handleAll() }}>show all</css.DropdownOption>
-                <css.DropdownOption onClick={() => { handleOptionClick('show all'), handleFollow() }}>follow</css.DropdownOption>
+                <css.DropdownOption onClick={() => { handleOptionClick('follow'), handleFollow() }}>follow</css.DropdownOption>
                 <css.DropdownOption onClick={() => { handleOptionClick('followings'), handleFollowing() }}>followings</css.DropdownOption>
             </css.DropdownBlock>
         </css.DropdownDiv>

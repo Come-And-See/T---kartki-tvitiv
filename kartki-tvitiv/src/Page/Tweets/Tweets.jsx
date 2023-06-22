@@ -19,27 +19,25 @@ const Tweets = () => {
 
 
     useEffect(() => {
-
         if (!isFollows.length) {
             const storedData = localStorage.getItem('idFollow');
             if (storedData) {
                 setIsFollows(JSON.parse(localStorage.getItem('idFollow')));
             }
         }
-
-
         const getTweets = async () => {
             const data = await onGetTweets();
             setTweetsFilter(data)
             setTweets(data?.slice(0, value))
 
+
             if (value >= data?.length) {
                 setIsMore(false);
             }
         }
-        getTweets();
 
-    }, [value, isFollows]);
+        getTweets();
+    }, [value]);
 
 
     const onСhangeXValue = () => {
@@ -53,41 +51,36 @@ const Tweets = () => {
 
     const onFollowsOff = async (id) => {
         setIsFollows((prevState) => prevState.filter((followId) => followId !== id));
-        await onPutTweetsOff(id)
+        await onPutTweetsOff(id);
     }
 
 
     const handleAll = () => {
+        if (value >= tweetsFilter?.length) {
+            setIsMore(false);
+        } else {
+            setIsMore(true);
+        }
         setTweets(tweetsFilter.slice(0, value))
-
     }
 
 
     const handleFollow = () => {
-
-        const filteredData = tweetsFilter.filter(item => !isFollows.includes(item.id));
-        console.log("filteredData :", filteredData)
-
-        setTweets(filteredData.slice(0, value))
-
-
-      
-
-
-
-    }
-    const handleFollowing = async () => {
-        const filteredData = tweetsFilter.filter(item => isFollows.includes(item.id));
+        const filteredData = tweetsFilter?.filter(item => !isFollows.includes(item.id));
         setTweets(filteredData)
+        setIsMore(false);
+    }
 
-    
+    const handleFollowing = () => {
+        const filteredData = tweetsFilter?.filter(item => isFollows.includes(item.id));
+        setTweets(filteredData)
+        setIsMore(false);
     }
 
 
 
 
     return (
-
         <css.TweetsDiv>
             <css.TweetsNav>
                 <css.TweetsBtnBack type='button' onClick={() => { navigate('/') }}>Go back</css.TweetsBtnBack>
