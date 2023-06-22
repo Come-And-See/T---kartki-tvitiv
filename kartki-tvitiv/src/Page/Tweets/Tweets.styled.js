@@ -26,7 +26,6 @@ export const TweetLI = styled.li`
   box-shadow: -2.5776965618133545px 6.873857021331787px 20.621572494506836px 0px
     rgba(0, 0, 0, 0.23);
   list-style: none;
-  border-radius: 20px;
   text-align: center;
 
   font-family: "Montserrat", sans-serif;
@@ -65,7 +64,7 @@ export const TweetImgAvatar = styled.img`
 `;
 
 export const TweetDivText = styled.div`
-  padding: 26px 0;
+  padding: 62px 0 26px;
 `;
 
 export const TweetDivTextTweets = styled.p`
@@ -78,6 +77,7 @@ export const TweetDivTextFollowers = styled.p`
 
 export const TweetButtonOn = styled.button`
   width: 196px;
+  height: 50px;
   padding: 14px 28px;
   border-radius: 10px;
   background: #ebd8ff;
@@ -110,4 +110,23 @@ export const TweetsLoadMore = styled.button`
   display: block;
   padding: 14px 28px;
   margin-top: 30px;
+`;
+
+export const TweetsRectangle = styled.div`
+  width: 380px;
+  height: 8px;
+  background: #ebd8ff;
+  box-shadow: 0px 3.4369285106658936px 2.5776965618133545px 0px #fbf8ff inset,
+    0px 3.4369285106658936px 3.4369285106658936px 0px rgba(0, 0, 0, 0.06),
+    0px -1.7184642553329468px 3.4369285106658936px 0px #ae7be3 inset;
+  position: absolute;
+  left: 0;
+  top: 214px;
+`;
+
+
+
+export const TweetsNav = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

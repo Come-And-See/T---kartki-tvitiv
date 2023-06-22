@@ -3,9 +3,9 @@ import * as css from './Tweets.styled';
 import { useNavigate } from 'react-router-dom';
 import { onGetTweets, onPutTweetsOff, onPutTweetsOn } from '../../Api/operations';
 import pictureTop from '../../Img/pictureTop.png'
-import rectangle from '../../Img/rectangle.png'
-import logo from '../../Img/logo.png'
+import logo from '../../Img/logo.svg'
 import boy from '../../Img/boy.png'
+import Dropdown from '../../Components/Dropdown/Dropdown';
 
 
 const Tweets = () => {
@@ -13,12 +13,19 @@ const Tweets = () => {
     const [tweets, setTweets] = useState([]);
     const [value, setValue] = useState(6);
     const [isMore, setIsMore] = useState(true);
-
     const [isFollows, setIsFollows] = useState([]);
 
 
-
     useEffect(() => {
+
+        if (!isFollows.length) {
+            const storedData = localStorage.getItem('idFollow');
+            if (storedData) {
+                setIsFollows(JSON.parse(localStorage.getItem('idFollow')));
+            }
+        }
+
+
         const getTweets = async () => {
             const data = await onGetTweets();
             setTweets(data?.slice(0, value))
@@ -37,28 +44,36 @@ const Tweets = () => {
     }
 
     const onFollowsOn = async (id) => {
-        await onPutTweetsOn(id)
-        setIsFollows((prev) => [...prev, id]);
+        setIsFollows((prevState) => [...prevState, id]);
+        await onPutTweetsOn(id);
     }
 
     const onFollowsOff = async (id) => {
+        setIsFollows((prevState) => prevState.filter((followId) => followId !== id));
         await onPutTweetsOff(id)
-        setIsFollows((prev) => prev.filter((followId) => followId !== id));
     }
 
+
+
+
     return (
+
         <css.TweetsDiv>
-            <css.TweetsBtnBack type='button' onClick={() => { navigate('/') }}>Go back</css.TweetsBtnBack>
+            <css.TweetsNav>
+                <css.TweetsBtnBack type='button' onClick={() => { navigate('/') }}>Go back</css.TweetsBtnBack>
+                <Dropdown tweets={tweets} isFollows={isFollows} />
+            </css.TweetsNav>
             <css.TweetUL>
-                {tweets.map(({ id, avatar, followers, tweets }) => {
-                    const isFollow = isFollows.includes(id);
-                    
+                {tweets?.map(({ id, avatar, followers, tweets, name }) => {
+                    localStorage.setItem('idFollow', JSON.stringify(isFollows));
+                    const isFollow = isFollows?.includes(id);
+
                     return (<css.TweetLI key={id}>
-                        <css.TweetImgLogo src={logo} alt="" />
-                        <css.TweetImgTop src={pictureTop} alt="" />
-                        <img src={rectangle} alt="" />
-                        <css.TweetImgBoy src={boy} alt="" />
-                        <css.TweetImgAvatar src={avatar} alt="" />
+                        <css.TweetImgLogo src={logo} alt="Go It" />
+                        <css.TweetImgTop src={pictureTop} alt="Go it" />
+                        <css.TweetsRectangle></css.TweetsRectangle>
+                        <css.TweetImgBoy src={boy} alt="Go it" />
+                        <css.TweetImgAvatar src={avatar} alt={`Avatar - ${name}`} />
                         <css.TweetDivText>
                             <css.TweetDivTextTweets>{tweets} tweets</css.TweetDivTextTweets>
                             <css.TweetDivTextFollowers>{Number(followers).toLocaleString('en-US')} followers</css.TweetDivTextFollowers>

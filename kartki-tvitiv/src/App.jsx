@@ -3,7 +3,7 @@ import './App.css'
 import Home from './Page/Home/Home'
 import { Navigate, Route, Routes } from 'react-router-dom';
 import NavLinks from './Components/NavLinks/NavLinks';
-import Tweets from './Components/Tweets/Tweets';
+import Tweets from './Page/Tweets/Tweets';
 
 function App() {
 
