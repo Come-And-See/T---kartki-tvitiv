@@ -6,6 +6,7 @@ import pictureTop from '../../Img/pictureTop.png'
 import logo from '../../Img/logo.svg'
 import boy from '../../Img/boy.png'
 import Dropdown from '../../Components/Dropdown/Dropdown';
+import Skeleton from '@mui/material/Skeleton';
 
 
 const Tweets = () => {
@@ -14,7 +15,6 @@ const Tweets = () => {
     const [value, setValue] = useState(6);
     const [isMore, setIsMore] = useState(true);
     const [isFollows, setIsFollows] = useState([]);
-
     const [tweetsFilter, setTweetsFilter] = useState([]);
 
 
@@ -87,26 +87,36 @@ const Tweets = () => {
                 <Dropdown handleFollow={handleFollow} handleAll={handleAll} handleFollowing={handleFollowing} />
             </css.TweetsNav>
             <css.TweetUL>
-                {tweets?.map(({ id, avatar, followers, tweets, name }) => {
-                    localStorage.setItem('idFollow', JSON.stringify(isFollows));
-                    const isFollow = isFollows?.includes(id);
+                {tweets?.length === 0 ? (
+                    <css.TweetUL>
+                        <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
+                        <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
+                        <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
+                        <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
+                        <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
+                        <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
+                    </css.TweetUL>
+                ) : (
+                    tweets?.map(({ id, avatar, followers, tweets, name }) => {
+                        localStorage.setItem('idFollow', JSON.stringify(isFollows));
+                        const isFollow = isFollows?.includes(id);
 
-                    return (<css.TweetLI key={id}>
-                        <css.TweetImgLogo src={logo} alt="Go It" />
-                        <css.TweetImgTop src={pictureTop} alt="Go it" />
-                        <css.TweetsRectangle></css.TweetsRectangle>
-                        <css.TweetImgBoy src={boy} alt="Go it" />
-                        <css.TweetImgAvatar src={avatar} alt={`Avatar - ${name}`} />
-                        <css.TweetDivText>
-                            <css.TweetDivTextTweets>{tweets} tweets</css.TweetDivTextTweets>
-                            <css.TweetDivTextFollowers>{Number(followers).toLocaleString('en-US')} followers</css.TweetDivTextFollowers>
-                        </css.TweetDivText>
-                        {!isFollow ?
-                            (<css.TweetButtonOn type='button' onClick={() => { onFollowsOn(id) }}>follow</css.TweetButtonOn>)
-                            :
-                            (<css.TweetButtonOff type='button' onClick={() => { onFollowsOff(id) }}>following</css.TweetButtonOff>)}
-                    </css.TweetLI>)
-                })}
+                        return (<css.TweetLI key={id}>
+                            <css.TweetImgLogo src={logo} alt="Go It" />
+                            <css.TweetImgTop src={pictureTop} alt="Go it" />
+                            <css.TweetsRectangle></css.TweetsRectangle>
+                            <css.TweetImgBoy src={boy} alt="Go it" />
+                            <css.TweetImgAvatar src={avatar} alt={`Avatar - ${name}`} />
+                            <css.TweetDivText>
+                                <css.TweetDivTextTweets>{tweets} tweets</css.TweetDivTextTweets>
+                                <css.TweetDivTextFollowers>{Number(followers).toLocaleString('en-US')} followers</css.TweetDivTextFollowers>
+                            </css.TweetDivText>
+                            {!isFollow ?
+                                (<css.TweetButtonOn type='button' onClick={() => { onFollowsOn(id) }}>follow</css.TweetButtonOn>)
+                                :
+                                (<css.TweetButtonOff type='button' onClick={() => { onFollowsOff(id) }}>following</css.TweetButtonOff>)}
+                        </css.TweetLI>)
+                    }))}
             </css.TweetUL>
             {isMore ? <css.TweetsLoadMore type='button' onClick={onСhangeXValue}>Load More</css.TweetsLoadMore> : <></>}
         </css.TweetsDiv>

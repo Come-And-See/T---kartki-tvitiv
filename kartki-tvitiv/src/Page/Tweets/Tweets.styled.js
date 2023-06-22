@@ -124,8 +124,6 @@ export const TweetsRectangle = styled.div`
   top: 214px;
 `;
 
-
-
 export const TweetsNav = styled.div`
   display: flex;
   justify-content: space-between;

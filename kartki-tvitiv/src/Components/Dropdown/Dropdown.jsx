@@ -3,7 +3,7 @@ import * as css from './Dropdown.styled';
 
 const Dropdown = ({ handleFollow, handleAll, handleFollowing }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState('show all');
 
     const handleOptionClick = option => {
         setSelectedOption(option);
