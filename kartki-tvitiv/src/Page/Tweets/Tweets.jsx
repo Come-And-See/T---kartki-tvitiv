@@ -15,6 +15,8 @@ const Tweets = () => {
     const [isMore, setIsMore] = useState(true);
     const [isFollows, setIsFollows] = useState([]);
 
+    const [tweetsFilter, setTweetsFilter] = useState([]);
+
 
     useEffect(() => {
 
@@ -28,6 +30,7 @@ const Tweets = () => {
 
         const getTweets = async () => {
             const data = await onGetTweets();
+            setTweetsFilter(data)
             setTweets(data?.slice(0, value))
 
             if (value >= data?.length) {
@@ -54,6 +57,33 @@ const Tweets = () => {
     }
 
 
+    const handleAll = () => {
+        setTweets(tweetsFilter.slice(0, value))
+
+    }
+
+
+    const handleFollow = () => {
+
+        const filteredData = tweetsFilter.filter(item => !isFollows.includes(item.id));
+        console.log("filteredData :", filteredData)
+
+        setTweets(filteredData.slice(0, value))
+
+
+      
+
+
+
+    }
+    const handleFollowing = async () => {
+        const filteredData = tweetsFilter.filter(item => isFollows.includes(item.id));
+        setTweets(filteredData)
+
+    
+    }
+
+
 
 
     return (
@@ -61,7 +91,7 @@ const Tweets = () => {
         <css.TweetsDiv>
             <css.TweetsNav>
                 <css.TweetsBtnBack type='button' onClick={() => { navigate('/') }}>Go back</css.TweetsBtnBack>
-                <Dropdown tweets={tweets} isFollows={isFollows} />
+                <Dropdown handleFollow={handleFollow} handleAll={handleAll} handleFollowing={handleFollowing} />
             </css.TweetsNav>
             <css.TweetUL>
                 {tweets?.map(({ id, avatar, followers, tweets, name }) => {
