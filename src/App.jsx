@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Home from './Page/Home/Home';
-import { HashRouter, Link, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import NavLinks from './Components/NavLinks/NavLinks';
 import Tweets from './Page/Tweets/Tweets';
 
