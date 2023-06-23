@@ -1,10 +1,6 @@
 {
+  "rewrites": [{ "source": "/(.*)", "destination": "/test-kartki-tvitiv/$1" }],
   "routes": [
-    {
-      "src": "/[^.]+",
-      "dest": "/",
-      "status": 200,
-      "destination": "/test-kartki-tvitiv/$1"
-    }
+    { "src": "/test-kartki-tvitiv/(.*)", "dest": "/test-kartki-tvitiv/$1" }
   ]
 }
