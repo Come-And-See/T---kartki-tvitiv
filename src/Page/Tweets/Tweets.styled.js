@@ -13,9 +13,10 @@ export const TweetsBtnBack = styled.button`
 export const TweetUL = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
-  padding: 0;
+  row-gap: 30px;
+  padding: 0px;
   justify-content: center;
+  column-gap: 50px;
 `;
 export const TweetLI = styled.li`
   position: relative;
@@ -127,4 +128,11 @@ export const TweetsRectangle = styled.div`
 export const TweetsNav = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+
+export const TweetsNoFollowing = styled.p`
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 600;
 `;

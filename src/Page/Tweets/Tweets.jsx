@@ -16,6 +16,7 @@ const Tweets = () => {
     const [isMore, setIsMore] = useState(true);
     const [isFollows, setIsFollows] = useState([]);
     const [tweetsFilter, setTweetsFilter] = useState([]);
+    const [selectedOption, setSelectedOption] = useState('show all');
 
 
     useEffect(() => {
@@ -62,6 +63,7 @@ const Tweets = () => {
             setIsMore(true);
         }
         setTweets(tweetsFilter.slice(0, value))
+        setSelectedOption('show all');
     }
 
 
@@ -69,13 +71,17 @@ const Tweets = () => {
         const filteredData = tweetsFilter?.filter(item => !isFollows.includes(item.id));
         setTweets(filteredData)
         setIsMore(false);
+        setSelectedOption('follow');
     }
 
     const handleFollowing = () => {
         const filteredData = tweetsFilter?.filter(item => isFollows.includes(item.id));
         setTweets(filteredData)
         setIsMore(false);
+        setSelectedOption('followings');
     }
+
+
 
 
 
@@ -88,14 +94,16 @@ const Tweets = () => {
             </css.TweetsNav>
             <css.TweetUL>
                 {tweets?.length === 0 ? (
-                    <css.TweetUL>
+                    tweets.length === 0 && selectedOption === 'followings' ? (
+                        <css.TweetsNoFollowing>No 'following' cards.</css.TweetsNoFollowing>
+                    ) : (<css.TweetUL>
                         <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
                         <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
                         <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
                         <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
                         <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
                         <css.TweetLI><Skeleton animation="wave" /></css.TweetLI>
-                    </css.TweetUL>
+                    </css.TweetUL>)
                 ) : (
                     tweets?.map(({ id, avatar, followers, tweets, name }) => {
                         localStorage.setItem('idFollow', JSON.stringify(isFollows));
@@ -116,7 +124,8 @@ const Tweets = () => {
                                 :
                                 (<css.TweetButtonOff type='button' onClick={() => { onFollowsOff(id) }}>following</css.TweetButtonOff>)}
                         </css.TweetLI>)
-                    }))}
+                    })
+                )}
             </css.TweetUL>
             {isMore ? <css.TweetsLoadMore type='button' onClick={onСhangeXValue}>Load More</css.TweetsLoadMore> : <></>}
         </css.TweetsDiv>
