@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "src": "/[^.]+",
+      "source": "/(.*)",
       "dest": "/",
       "status": 200,
       "destination": "/test-kartki-tvitiv/$1"
