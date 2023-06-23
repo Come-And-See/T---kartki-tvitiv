@@ -11,6 +11,17 @@
       rel="stylesheet"
     />
     <title>Tweets | Vite + React</title>
+    <script src="https://unpkg.com/react-router-dom@6.13.0/umd/react-router-dom.min.js"></script>
+    <script>
+      const currentPath = window.location.pathname;
+      const validPaths = ["/", "/tweets"];
+      function checkPathExists() {
+        if (!validPaths.includes(currentPath)) {
+          window.location.href = "/";
+        }
+      }
+      window.addEventListener("DOMContentLoaded", checkPathExists);
+    </script>
   </head>
   <body>
     <div id="root"></div>
