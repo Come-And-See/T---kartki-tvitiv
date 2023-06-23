@@ -1,7 +1,7 @@
 
-<h1>Карточки Твитов (Tweet Cards)</h1>
+<h1 style="text-align: center;">Карточки Твитов (Tweet Cards)</h1>
 
-<img src="https://img001.prntscr.com/file/img001/pCWhcGHzRMuo8vUm1IEozA.png" alt="Tweet Cards">
+<img src="https://img001.prntscr.com/file/img001/8VCPaPvIQCaBiAn-Y5lSsw.png" alt="Tweet Cards">
 
 <p>This project is a React application that displays tweet cards. It fetches tweets from an API and allows users to filter and interact with the cards.</p>
 
