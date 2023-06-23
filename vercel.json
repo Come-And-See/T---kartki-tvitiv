@@ -3,7 +3,8 @@
     {
       "src": "/[^.]+",
       "dest": "/",
-      "status": 200
+      "status": 200,
+      "destination": "/test-kartki-tvitiv/$1"
     }
   ]
 }
