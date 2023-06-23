@@ -11,21 +11,6 @@
       rel="stylesheet"
     />
     <title>Tweets | Vite + React</title>
-    <script src="https://unpkg.com/react-router-dom@6.13.0/umd/react-router-dom.min.js"></script>
-    <script>
-      const currentPath = window.location.pathname;
-      const basePath = "/test-kartki-tvitiv";
-      const validPaths = ["/", "/tweets"];
-
-      function checkPathExists() {
-        const adjustedPath = currentPath.replace(basePath, "");
-        if (!validPaths.includes(adjustedPath)) {
-          window.location.href = basePath;
-        }
-      }
-
-      window.addEventListener("DOMContentLoaded", checkPathExists);
-    </script>
   </head>
   <body>
     <div id="root"></div>
