@@ -14,12 +14,16 @@
     <script src="https://unpkg.com/react-router-dom@6.13.0/umd/react-router-dom.min.js"></script>
     <script>
       const currentPath = window.location.pathname;
+      const basePath = "/test-kartki-tvitiv";
       const validPaths = ["/", "/tweets"];
+
       function checkPathExists() {
-        if (!validPaths.includes(currentPath)) {
-          window.location.href = "/";
+        const adjustedPath = currentPath.replace(basePath, "");
+        if (!validPaths.includes(adjustedPath)) {
+          window.location.href = basePath;
         }
       }
+
       window.addEventListener("DOMContentLoaded", checkPathExists);
     </script>
   </head>
